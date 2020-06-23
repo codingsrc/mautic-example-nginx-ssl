@@ -25,13 +25,11 @@ services:
             - mautic-web:/var/www/html
             - ./conf.d/uploadsize.ini:/usr/local/etc/php/conf.d/uploadsize.ini
         environment:
-            MAUTIC_DB_HOST: ${CONTAINER_DB_NAME}:3306
+            MAUTIC_DB_HOST: db
             MAUTIC_DB_NAME: ${MYSQL_DATABASE}
             MAUTIC_DB_USER: ${MYSQL_USER}
             MAUTIC_DB_PASSWORD: ${MYSQL_PASSWORD}
-            VIRTUAL_HOST: ${DOMAINS}
-            LETSENCRYPT_HOST: ${DOMAINS}
-            LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+            MAUTIC_TRUSTED_PROXIES: 0.0.0.0/0
 
     nginx:
         restart: unless-stopped
